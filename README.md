@@ -10,5 +10,5 @@
 - [Maturan](https://example.com)
 - [Monte De Ramos](https://example.com)
 - [Sullano](https://example.com)
-- [Salgado](https://example.com)
+- [Salgado](https://github.com/Kreo141)
 - [Ylanan](https://example.com)
