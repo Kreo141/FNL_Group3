@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head> 
+<body>
+    <h2>Welcome to the Dashboard</h2>
+    <h3>User Info:</h3>
+    <p id="user-info">Loading...</p>
+    <button onclick="signOut()">Sign Out</button>
+
+    <script>
+     const userAccount = sessionStorage.getItem("userAccount");
+
+    if (userAccount) {
+        const accountData = JSON.parse(userAccount);
+        document.getElementById("user-info").textContent = `Welcome, ${accountData.name }`;
+    } else {
+        document.getElementById("user-info").textContent = "No user data found. Please sign in.";
+    }
+    </script>
+</body>
+</html>

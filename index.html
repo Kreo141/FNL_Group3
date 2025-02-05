@@ -3,9 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Group 1</title>
+    <title>Microsoft Login with MSAL.js</title>
+    <script src="https://alcdn.msauth.net/browser/2.23.0/js/msal-browser.min.js"></script>
 </head>
 <body>
-    
+    <h2>Microsoft Login with MSAL.js</h2>
+    <button onclick="signIn()">Sign in with Microsoft</button>
+    <button onclick="signOut()">Sign Out</button>
+
+    <h3>User Info:</h3>
+    <pre id="user-info">Not logged in</pre>
+
+    <script src="auth.js"></script>
 </body>
 </html>

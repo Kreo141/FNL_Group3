@@ -1,0 +1,7 @@
+const msalConfig = {
+    auth: {
+        clientId: "a91e98b3-3956-4f4f-85e9-409f12084f14", // Replace with your Azure App client ID
+        authority: "https://login.microsoftonline.com/common",
+        redirectUri: "http://localhost:3000/" // Must match what you set in Azure
+    }
+};

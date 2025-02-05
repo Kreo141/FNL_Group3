@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microsoft Login with MSAL.js</title>
+    <script src="https://alcdn.msauth.net/browser/2.23.0/js/msal-browser.min.js"></script>
+</head>
+<body>
+    <h2>Microsoft Login with MSAL.js</h2>
+    <button onclick="signIn()">Sign in with Microsoft</button>
+    <button onclick="signOut()">Sign Out</button>
+
+    <h3>User Info:</h3>
+    <pre id="user-info">Not logged in</pre>
+
+    <script>// MSAL Configuration
+var msalConfig = {
+  auth: {
+    clientId: "a91e98b3-3956-4f4f-85e9-409f12084f14",
+    // Replace with your Azure App client ID
+    authority: "https://login.microsoftonline.com/common",
+    redirectUri: "http://localhost:3000/" // Must match what you set in Azure
+  }
+};
+var msalInstance = new msal.PublicClientApplication(msalConfig);
+var loginRequest = {
+  scopes: ["user.read"] // Scopes for Microsoft Graph API (change as needed)
+};
+
+// Handle Redirect Callback
+msalInstance.handleRedirectPromise().then(function (response) {
+  if (response) {
+    console.log("Login successful", response);
+    gotoDashboard();
+  }
+}).catch(function (error) {
+  console.error("Redirect error", error);
+});
+
+// Sign in function
+function signIn() {
+  msalInstance.loginRedirect(loginRequest);
+}
+
+// Sign out function
+function signOut() {
+  msalInstance.logoutRedirect();
+}
+
+// Fetch and display user info
+function gotoDashboard() {
+  var accounts = msalInstance.getAllAccounts();
+  if (accounts.length > 0) {
+    // Store the account details in sessionStorage
+    sessionStorage.setItem("userAccount", JSON.stringify(accounts[0]));
+
+    // Redirect to dashboard.html
+    window.location.href = "pages/02-Dashboard/dashboard.html";
+  } else {
+    console.error("No accounts found. Please sign in first.");
+  }
+}</script>
+</body>
+</html>
