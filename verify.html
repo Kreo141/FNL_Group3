@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0;">
+
+    <h1 id="display">Please wait...</h1>
+
+    <script>
+        const userAccount = sessionStorage.getItem("userAccount");
+
+        if (userAccount) {
+            const accountData = JSON.parse(userAccount);
+            const accountEmail =  accountData.username;
+            checkIfStudent(accountEmail);
+        } else {
+            document.getElementById("display").textContent = "No user data found. Please sign in.";
+        }
+
+        function checkIfStudent(accountEmail){
+            const emailLength = accountEmail.length;
+
+            for(var x = 0; x < accountEmail.length; x++){
+                console.log(accountEmail[x])
+                if(accountEmail[x] == '@'){
+                    console.log("@ DETECTED")
+                    if((accountEmail.slice(x, accountEmail.length)) == "@davao.sti.edu.ph"){
+                        window.location.href = "pages/02-Dashboard/dashboard.html";
+                    }
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>

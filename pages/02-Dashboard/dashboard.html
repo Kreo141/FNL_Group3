@@ -4,22 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+    <script src="https://alcdn.msauth.net/browser/2.23.0/js/msal-browser.min.js"></script>
 </head> 
 <body>
+
     <h2>Welcome to the Dashboard</h2>
     <h3>User Info:</h3>
     <p id="user-info">Loading...</p>
     <button onclick="signOut()">Sign Out</button>
 
-    <script>
-     const userAccount = sessionStorage.getItem("userAccount");
+    <script src="../../Logout_autoRedirect.js"></script>
+    <script src="../../resources/js/dashboard.js"></script>
+    <script src="../../auth.js"></script>
 
-    if (userAccount) {
-        const accountData = JSON.parse(userAccount);
-        document.getElementById("user-info").textContent = `Welcome, ${accountData.name }`;
-    } else {
-        document.getElementById("user-info").textContent = "No user data found. Please sign in.";
-    }
-    </script>
 </body>
 </html>

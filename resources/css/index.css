@@ -1,0 +1,90 @@
+@font-face {
+    font-family: 'JejuGothic';
+      src:  url('../../global/fonts/JejuGothic/JejuGothic.ttf.woff') format('woff'),
+      url('../../global/fonts/JejuGothic/JejuGothic.ttf.svg#JejuGothic') format('svg'),
+      url('../../global/fonts/JejuGothic/JejuGothic.ttf.eot'),
+      url('../../global/fonts/JejuGothic/JejuGothic.eot?#iefix') format('embedded-opentype'); 
+      font-weight: normal;
+      font-style: normal;
+}
+
+
+body{
+    background-color: black;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    margin: 0;
+}
+
+.Level1{
+    height: 100vh;
+    width: 100%;
+    background-image: url('../../resources/images/StiDavao.png');
+    background-position: center;
+    background-size: 110%;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.Level2{
+    height: 100vh;
+    width: 100%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.801), black);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    backdrop-filter: blur(5px);
+}
+
+/* LEVEL2 CHILDREN */
+.Lev2Child{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.Container1{
+    width: 60%;
+    text-align: center;
+}.Header{
+    font-family: 'JejuGothic';
+    color: #ffffff;
+    font-size: 3em;
+    letter-spacing: 0.4em;
+    font-weight: 100;
+    margin: 0;
+}.SubHeader{
+    font-family: 'JejuGothic';
+    color: #FFF200;
+    font-size: 0.8em;
+    letter-spacing: 0.2em;
+    font-weight: 1;
+    margin: 0;
+}.LoginButton{
+    margin-top: 3%;
+    background-color: rgba(0, 0, 0, 0);
+    border: solid 0.1px #FFF200;
+    padding: 1.2% 4% 1.2% 4%;
+    font-family: 'JejuGothic';
+    color: white;
+    font-size: 1.2em;
+    transition: background-color .5s ease;
+}
+
+.Container2{
+    width: 60%;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 1.5%;
+    text-align: center;
+}.Footer{
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ffffff59;
+    font-weight: 1%;
+}

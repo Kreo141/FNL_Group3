@@ -3,17 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Microsoft Login with MSAL.js</title>
+    <title>STID</title>
+    <link rel="icon" type="image/svg+xml" href="resources/STID_Logo.svg">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://alcdn.msauth.net/browser/2.23.0/js/msal-browser.min.js"></script>
+
+    <link rel="stylesheet" href="resources/css/index.css">
 </head>
 <body>
-    <h2>Microsoft Login with MSAL.js</h2>
-    <button onclick="signIn()">Sign in with Microsoft</button>
-    <button onclick="signOut()">Sign Out</button>
+    <div class="Level1">
+        <div class="Level2">
+            <div class="Container1 Lev2Child">
+                <h1 class="Header">MADAYAW eSTIay</h1>
+                <p class="SubHeader">Stay Connected, Celebrate Moments, Embrace School Spirit!</p>
+                <button class="LoginButton" onclick="signIn()">Login</button>
+            </div>
+            <div class="Container2 Lev2Child">
+                <p class="Footer">STID is an exclusive platform designed for STI College Davao, dedicated to keeping students, faculty, and parents updated with the latest happenings in the school</p>
+            </div>
+        </div>
+    </div>
+  
+    <!-- Frontend -->
+    <script src="pages/01-Index/frontend_index.js"></script>
 
-    <h3>User Info:</h3>
-    <pre id="user-info">Not logged in</pre>
 
-    <script src="auth.js"></script>
+    <!-- Backend -->
+    <s src="auth.js"></s>
+    <s src="pages/01-Index/autoRedirect.js"></s>
 </body>
 </html>

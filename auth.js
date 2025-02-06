@@ -7,6 +7,7 @@ const msalConfig = {
     }
 };
 
+
 const msalInstance = new msal.PublicClientApplication(msalConfig);
 
 const loginRequest = {
@@ -30,6 +31,10 @@ function signIn() {
 
 function signOut() {
     msalInstance.logoutRedirect();
+    window.location.href = "../../index.html"
+
+    sessionStorage.clear();
+    sessionStorage.setItem("userAccount", "notSignedIn");
 }
 
 // i store sa sessionStorage then i redirect
@@ -38,8 +43,24 @@ function gotoDashboard() {
     if (accounts.length > 0) {
         sessionStorage.setItem("userAccount", JSON.stringify(accounts[0]));
         
-        window.location.href = "pages/02-Dashboard/dashboard.html";
+        window.location.href = "verify.html";
     } else {
         console.error("No accounts found. Please sign in first.");
     } 
+}
+
+
+
+
+
+
+
+
+
+
+
+// DEBUGGING DEBUGGING DEBUGGING DEBUGGING DEBUGGING DEBUGGING DEBUGGING DEBUGGING DEBUGGING
+function checkIfLogged(){
+    const userAccount = sessionStorage.getItem("userAccount");
+    console.log(userAccount)
 }
