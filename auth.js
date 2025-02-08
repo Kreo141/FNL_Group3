@@ -1,3 +1,4 @@
+// 1. MSALSAL Config
 const msalConfig = {
     auth: {
         clientId: "a91e98b3-3956-4f4f-85e9-409f12084f14",
@@ -6,8 +7,8 @@ const msalConfig = {
         postLogoutRedirectUri: "http://localhost:3000/index.html"
     },
     cache: {
-        cacheLocation: "sessionStorage", 
-        storeAuthStateInCookie: true 
+        cacheLocation: "sessionStorage",
+        storeAuthStateInCookie: true
     }
 };
 
@@ -17,6 +18,7 @@ const loginRequest = {
     scopes: ["user.read"]
 };
 
+// 2. Handle Redirect Otentication
 msalInstance.handleRedirectPromise()
     .then(response => {
         const account = msalInstance.getAllAccounts()[0];
@@ -32,6 +34,19 @@ msalInstance.handleRedirectPromise()
         console.error("Redirect error", error);
     });
 
+// 3. Silent Authentication
+msalInstance.acquireTokenSilent(loginRequest)
+    .then(response => {
+    })
+    .catch(error => {
+        if (error instanceof msal.InteractionRequiredAuthError) {
+            msalInstance.acquireTokenRedirect(loginRequest);
+        } else {
+            console.error("Token acquisition error:", error);
+        }
+    });
+
+// 4. User Session Manage
 function storeUserSession(account) {
     if (!account) return;
     
@@ -48,28 +63,31 @@ function storeUserSession(account) {
                 redirectToDashboard();
             }
         } else {
-            console.error("failed to store user session");
+            console.error("Failed to store user session");
         }
     })
-    .catch(error => console.error("session storage irror:", error));
+    .catch(error => console.error("Session storage error:", error));
 }
 
+// 5. Login and Logout Functions
 function signIn() {
     msalInstance.loginRedirect(loginRequest);
 }
 
 function signOut() {
-    fetch("/api/logout", { method: "POST", credentials: "include" }) // Backend handles session invalidation
+    fetch("/api/logout", { method: "POST", credentials: "include" }) 
         .then(() => {
             msalInstance.logoutRedirect();
         })
         .catch(error => console.error("Logout error:", error));
 }
 
+// 6. Navigation Handling
 function redirectToDashboard() {
     window.location.href = "/pages/02-Dashboard/dashboard.html";
 }
 
+// 7. Page Load Logiic
 window.onload = function() {
     const account = msalInstance.getAllAccounts()[0];
     const isOnDashboard = window.location.pathname.includes("/pages/02-Dashboard/dashboard.html");
@@ -80,22 +98,3 @@ window.onload = function() {
         window.location.href = "/index.html";
     }
 };
-
-msalInstance.acquireTokenSilent(loginRequest)
-    .then(response => {
-    })
-    .catch(error => {
-        if (error instanceof msal.InteractionRequiredAuthError) {
-            msalInstance.acquireTokenRedirect(loginRequest);
-        } else {
-            console.error("Token acquisition error:", error);
-        }
-    });
-
-
-
-// DEBUGGING DEBUGGING DEBUGGING DEBUGGING DEBUGGING DEBUGGING DEBUGGING DEBUGGING DEBUGGING
-function checkIfLogged(){
-    const userAccount = sessionStorage.getItem("userAccount");
-    console.log(userAccount)
-}
